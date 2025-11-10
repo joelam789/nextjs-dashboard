@@ -90,7 +90,9 @@ export async function fetchFilteredInvoices(
   query: string,
   currentPage: number,
 ) {
+  //console.log("current page: " + currentPage);
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+  //console.log("offset: " + offset);
 
   try {
     const invoices = await sql<InvoicesTable[]>`
@@ -160,6 +162,7 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
+    console.log(invoice); // Invoice is an empty array []
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
